@@ -1,0 +1,1 @@
+{"name":"\u0414\u0430\u043d\u0438\u0438\u043b","password_hash":"$2y$10$Rlz8lN3NVofKBJBIcTzOLuGPjYjYtXenXCFmFDsUVFtzgkdoL\/O.2","items":[{"name":"\u0410\u0439\u0444\u043e\u043d 16","description":"\u0441\u0435\u0440\u044b\u0439 \u043d\u0430 256\u0433\u0431","is_gifted":false}]}
