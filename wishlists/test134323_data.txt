@@ -1,0 +1,1 @@
+{"name":"dfd","password_hash":"$2y$10$Z5VSNixBX\/qAfZ7loJw0vuahCNKRBpkx062E\/0M\/uGS8QUW.GLA4e","items":[{"name":"123","description":"123","is_gifted":false}]}

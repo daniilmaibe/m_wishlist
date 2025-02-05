@@ -1,0 +1,1 @@
+{"name":"group1","password_hash":"$2y$10$sYrl9\/L258qXwHvqqMmua.V1vbKBriumrwTuBn9fzikb7hRZ8\/Rta","items":[]}
