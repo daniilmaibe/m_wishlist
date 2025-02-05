@@ -1,38 +1,39 @@
-name: PHP CI
+name: PHP Composer
 
 on:
   push:
-    branches:
-      - main  # Запускать на пуше в ветку main
+    branches: [ "main" ]
   pull_request:
-    branches:
-      - main  # Запускать на пул-реквестах в ветку main
+    branches: [ "main" ]
+
+permissions:
+  contents: read
 
 jobs:
-  php-ci:
+  build:
+
     runs-on: ubuntu-latest
 
     steps:
-      # Шаг 1: Проверка кода
-      - name: Checkout code
-        uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
-      # Шаг 2: Установка PHP
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.2'  # Укажите нужную версию PHP
-          extensions: mbstring, json, xml, dom  # Укажите необходимые расширения
-          coverage: none  # Отключите coverage, если не используете
+    - name: Validate composer.json and composer.lock
+      run: composer validate --strict
 
-      # Шаг 3: Установка зависимостей Composer
-      - name: Install Composer dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest
+    - name: Cache Composer packages
+      id: composer-cache
+      uses: actions/cache@v3
+      with:
+        path: vendor
+        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-
 
-      # Шаг 4: Запуск статического анализатора (PHPStan)
-      - name: Run PHPStan
-        run: vendor/bin/phpstan analyse --level=8 src tests
+    - name: Install dependencies
+      run: composer install --prefer-dist --no-progress
 
-      # Шаг 5: Запуск тестов (если есть)
-      - name: Run PHPUnit tests
-        run: vendor/bin/phpunit --coverage-text --colors=never
+    # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
+    # Docs: https://getcomposer.org/doc/articles/scripts.md
+
+    # - name: Run test suite
+    #   run: composer run-script test
