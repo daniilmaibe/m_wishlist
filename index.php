@@ -31,6 +31,16 @@
 
             <button type="submit">Создать вишлист</button>
         </form>
+
+        <h2>Скриншоты</h2>
+        <p>
+            От лица владельца: <br>
+            <img src="images/wishlist_owner.png" width="500" alt="">
+        </p>
+        <p>
+            От лица гостя: <br>
+            <img src="images/wishlist_guest.png" width="500" alt="">
+        </p>
     </div>
 </body>
 </html>
