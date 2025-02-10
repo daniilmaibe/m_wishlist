@@ -21,7 +21,7 @@ jobs:
         volumes:
           - ./:/var/www/html
         options: >-
-          --health-cmd "curl -f http://localhost || exit 1"
+          --health-cmd "curl -f http://localhost/index.php || exit 1"
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
