@@ -30,6 +30,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Set up Apache configuration
+        run: |
+          echo "ServerName localhost" > apache.conf
+          docker cp apache.conf web:/etc/apache2/conf-available/servername.conf
+          docker exec web a2enconf servername
+          docker exec web service apache2 reload
+
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
