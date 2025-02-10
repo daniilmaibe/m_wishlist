@@ -1,0 +1,42 @@
+name: Autotest
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      # Запуск локального сервера для тестирования
+      web:
+        image: php:8.0-apache
+        ports:
+          - 80:80
+        volumes:
+          - ./:/var/www/html
+        options: >-
+          --health-cmd "curl -f http://localhost || exit 1"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run autotest
+        run: node test.js

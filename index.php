@@ -24,7 +24,7 @@
             <input type="text" id="name" name="name" required>
 
             <label for="wishlist_id">Идентификатор вишлиста (на английском):</label>
-            <input type="text" id="wishlist_id" name="wishlist_id" required>
+            <input type="text" id="wishlist_id" name="wishlist_id" pattern="^[a-zA-Z\s]+$" required>
 
             <label for="password">Пароль для редактирования:</label>
             <input type="password" id="password" name="password" required>
